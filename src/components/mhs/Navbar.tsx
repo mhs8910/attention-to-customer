@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Logo } from "./Logo";
+import { WA_DEFAULT, trackCtaClick } from "@/lib/whatsapp";
 
 const links = [
+  { label: "System", href: "#growth-system" },
   { label: "Services", href: "#services" },
-  { label: "Growth System", href: "#growth-system" },
   { label: "Work", href: "#work" },
   { label: "Process", href: "#process" },
-  { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -23,20 +23,16 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? "py-3" : "py-5"
-      }`}
-    >
+    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}>
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div
           className={`flex items-center justify-between rounded-2xl px-4 md:px-5 py-3 transition-all duration-500 ${
             scrolled
-              ? "bg-deep-navy/70 backdrop-blur-xl border border-white/[0.06] shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)]"
+              ? "bg-deep-navy/70 backdrop-blur-xl border border-teal/15 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)]"
               : "bg-transparent"
           }`}
         >
-          <a href="#top" className="shrink-0">
+          <a href="#top" className="shrink-0" aria-label="MHS-Productions home">
             <Logo size={42} />
           </a>
 
@@ -53,15 +49,18 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a href="#audit" className="btn-primary-glow text-sm hidden sm:inline-flex">
-              Get Free Growth Audit
+            <a
+              href={WA_DEFAULT}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackCtaClick("nav_free_audit")}
+              className="btn-primary-glow text-sm"
+            >
+              Free Audit
               <ArrowRight className="w-4 h-4" />
             </a>
-            <a href="#audit" className="btn-primary-glow text-xs sm:hidden">
-              Free Audit
-            </a>
             <button
-              className="lg:hidden p-2 rounded-lg border border-white/10 text-creator-white"
+              className="lg:hidden p-2 rounded-lg border border-teal/15 text-creator-white"
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
             >

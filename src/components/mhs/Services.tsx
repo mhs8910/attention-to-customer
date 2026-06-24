@@ -1,18 +1,37 @@
-import { Video, Megaphone, MousePointerClick, MessageSquare, Search, Compass, ArrowUpRight } from "lucide-react";
+import { Target, Film, MousePointerClick, MessageCircle, ClipboardCheck, MapPin, ArrowRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const services = [
   {
-    icon: Video,
-    title: "Social Media Content Production",
-    desc: "Reels, posts, editing, content calendar, and campaign creative built to actually convert.",
-    featured: true,
+    icon: Target,
+    title: "Meta Ads",
+    desc: "We build lead, retargeting, and awareness campaigns on Facebook and Instagram that send people to a landing page built to convert.",
   },
-  { icon: Megaphone, title: "Meta Ads Campaigns", desc: "Lead campaigns, retargeting, local awareness, and offer campaigns." },
-  { icon: MousePointerClick, title: "Landing Pages", desc: "High-converting pages built for inquiries, bookings, and WhatsApp clicks." },
-  { icon: MessageSquare, title: "WhatsApp Funnels", desc: "Lead capture, automated follow-up, qualification, and appointment flow." },
-  { icon: Search, title: "Growth Audits", desc: "Diagnose what's stopping your business from getting more customers online." },
-  { icon: Compass, title: "Campaign Strategy", desc: "Offers, hooks, CTAs, content angles, funnel mapping, and launch plans." },
+  {
+    icon: Film,
+    title: "Social Media Content",
+    desc: "Reels, carousels, and static posts built to create trust, attract the right audience, and generate inquiries — not just views.",
+  },
+  {
+    icon: MousePointerClick,
+    title: "Landing Pages",
+    desc: "High-converting pages built for bookings, WhatsApp clicks, and inquiry submissions — not generic templates.",
+  },
+  {
+    icon: MessageCircle,
+    title: "WhatsApp Funnels",
+    desc: "Automated follow-up and qualification flows that capture, nurture, and book leads through WhatsApp Business.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Growth Audits",
+    desc: "A full diagnostic of your social media, ads, landing page, and WhatsApp flow — showing exactly where leads are leaking.",
+  },
+  {
+    icon: MapPin,
+    title: "Google Profile Optimization",
+    desc: "We optimize your Google Business Profile for local discovery, trust, and map rankings in Lahore and Pakistan.",
+  },
 ];
 
 export function Services() {
@@ -20,61 +39,40 @@ export function Services() {
     <section id="services" className="section-padding relative">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div className="max-w-2xl">
-              <div className="label-eyebrow mb-4">Services</div>
-              <h2 className="text-3xl md:text-5xl font-display font-bold leading-[1.1]">
-                Everything your business needs to turn
-                <span className="text-gradient-teal-gold"> attention into customers</span>
-              </h2>
-            </div>
-            <a href="#audit" className="btn-secondary-outline shrink-0">
-              Get Free Growth Audit
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
+          <div className="max-w-3xl mb-12">
+            <div className="label-eyebrow mb-4">Services</div>
+            <h2 className="text-3xl md:text-5xl font-display font-bold leading-[1.1] text-creator-white">
+              Everything your business needs to turn attention into{" "}
+              <span className="text-gradient-teal-gold">customers.</span>
+            </h2>
           </div>
         </Reveal>
 
-        {/* Bento grid */}
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 auto-rows-[220px]">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((s, i) => (
-            <Reveal
-              key={i}
-              delay={i * 0.05}
-              className={s.featured ? "md:col-span-2 md:row-span-2" : ""}
-            >
-              <div
-                className={`glass-panel glass-panel-hover h-full p-6 group relative overflow-hidden ${
-                  s.featured ? "bg-gradient-to-br from-teal/10 via-transparent to-gold/5 border-teal/20" : ""
-                }`}
-              >
-                {s.featured && (
-                  <>
-                    <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-teal/15 blur-3xl animate-pulse-glow" />
-                    <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-gold/10 blur-3xl" />
-                  </>
-                )}
-                <div className="relative h-full flex flex-col">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                    s.featured ? "bg-gradient-to-br from-teal to-arrow-green text-obsidian" : "bg-white/5 text-teal border border-white/10"
-                  }`}>
-                    <s.icon className="w-5 h-5" />
-                  </div>
-                  <h3 className={`font-display font-semibold text-creator-white mb-2 ${s.featured ? "text-2xl md:text-3xl" : "text-lg"}`}>
-                    {s.title}
-                  </h3>
-                  <p className={`text-cool-gray leading-relaxed ${s.featured ? "text-base" : "text-sm"}`}>
-                    {s.desc}
-                  </p>
-                  <div className="mt-auto pt-4 flex items-center gap-1.5 text-xs font-ui font-semibold text-teal group-hover:text-gold transition-colors">
-                    Explore Service
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </div>
+            <Reveal key={i} delay={i * 0.06}>
+              <div className="card-mhs p-6 h-full group">
+                <div className="w-12 h-12 rounded-xl border border-teal/30 flex items-center justify-center mb-5 group-hover:bg-teal/10 transition-colors">
+                  <s.icon className="w-5 h-5 text-teal" />
                 </div>
+                <h3 className="text-lg font-display font-semibold text-creator-white mb-2">{s.title}</h3>
+                <p className="text-sm text-cool-gray leading-relaxed font-brand">{s.desc}</p>
               </div>
             </Reveal>
           ))}
         </div>
+
+        <Reveal>
+          <div className="mt-10 text-center">
+            <a
+              href="#audit"
+              className="inline-flex items-center gap-2 text-teal hover:text-gold transition-colors font-ui font-semibold"
+            >
+              See all services
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

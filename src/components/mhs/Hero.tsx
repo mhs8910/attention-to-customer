@@ -1,81 +1,56 @@
-import { ArrowRight, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
-import { Hero3D } from "./Hero3D";
+import { ArrowRight, ArrowDown } from "lucide-react";
+import { WA_DEFAULT, trackCtaClick } from "@/lib/whatsapp";
 
 export function Hero() {
   return (
-    <section id="top" className="relative pt-32 md:pt-40 pb-20 overflow-hidden">
-      {/* Background layers */}
-      <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
-      <div className="absolute inset-0 -z-10 grid-bg opacity-60" />
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal/40 to-transparent" />
+    <section id="top" className="relative pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
+      {/* Animated grid background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 grid-bg opacity-40" />
+        <div className="absolute inset-0 pulse-dots" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-teal/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[400px] bg-gold/5 rounded-full blur-3xl" />
+      </div>
 
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-12 items-center">
-          {/* Copy */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel mb-6"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-gold" />
-              <span className="label-eyebrow text-[11px]">Content • Campaigns • Conversions</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-[1.05] tracking-tight"
-            >
-              We Turn Local Business
-              <br />
-              <span className="text-gradient-teal-gold">Attention Into Real Customers</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.25 }}
-              className="mt-6 text-lg text-cool-gray max-w-xl leading-relaxed"
-            >
-              MHS-Productions builds content systems, Meta ad campaigns, landing pages, and WhatsApp funnels
-              that help local businesses generate inquiries, leads, bookings, and customers.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-8 flex flex-wrap gap-3"
-            >
-              <a href="#audit" className="btn-primary-glow">
-                Get Free Growth Audit
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a href="#growth-system" className="btn-secondary-outline">
-                See The Growth System
-              </a>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-8 text-sm text-cool-gray/80 max-w-lg font-ui"
-            >
-              Built for restaurants, clinics, salons, gyms, solar companies, real estate brands,
-              and local service businesses.
-            </motion.p>
-          </div>
-
-          {/* 3D Hero */}
-          <div className="relative">
-            <Hero3D />
-          </div>
+      <div className="mx-auto max-w-6xl px-5 md:px-6 text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal/25 bg-teal/5 mb-8">
+          <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
+          <span className="text-xs font-ui uppercase tracking-[0.2em] text-teal">
+            Meta Ads · Content Systems · WhatsApp Funnels
+          </span>
         </div>
+
+        <h1 className="font-display font-bold text-[2.25rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-[4rem] tracking-tight text-creator-white">
+          Your Instagram Gets Views.
+          <br />
+          Your <span className="text-gradient-teal-gold">Customers</span> Don't.
+        </h1>
+
+        <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-cool-gray leading-relaxed font-brand">
+          MHS-Productions builds the system that connects your Meta ads, content, landing page, and WhatsApp into a
+          single customer acquisition engine — so attention finally converts.
+        </p>
+
+        <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href={WA_DEFAULT}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackCtaClick("hero_primary")}
+            className="btn-primary-glow"
+          >
+            Get Free Growth Audit
+            <ArrowRight className="w-4 h-4" />
+          </a>
+          <a href="#growth-system" className="btn-secondary-outline">
+            See The System
+            <ArrowDown className="w-4 h-4" />
+          </a>
+        </div>
+
+        <p className="mt-10 text-xs md:text-sm text-cool-gray/80 font-ui">
+          Used by aesthetic clinics, solar companies, and local businesses across Lahore and Pakistan
+        </p>
       </div>
     </section>
   );
