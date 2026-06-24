@@ -1,39 +1,43 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/mhs/Navbar";
 import { Hero } from "@/components/mhs/Hero";
-import { TrustBar } from "@/components/mhs/TrustBar";
 import { ProblemSection } from "@/components/mhs/ProblemSection";
 import { GrowthSystem } from "@/components/mhs/GrowthSystem";
+import { WhoWeWorkWith } from "@/components/mhs/WhoWeWorkWith";
+import { OfferSection } from "@/components/mhs/OfferSection";
 import { Services } from "@/components/mhs/Services";
-import { CampaignFlow } from "@/components/mhs/CampaignFlow";
 import { CaseStudies } from "@/components/mhs/CaseStudies";
 import { Process } from "@/components/mhs/Process";
-import { OfferSection } from "@/components/mhs/OfferSection";
-import { Pricing } from "@/components/mhs/Pricing";
-import { Testimonials } from "@/components/mhs/Testimonials";
-import { FAQ } from "@/components/mhs/FAQ";
+import { GrowthTest } from "@/components/mhs/GrowthTest";
+import { FAQ, FAQ_ITEMS } from "@/components/mhs/FAQ";
 import { FinalCTA } from "@/components/mhs/FinalCTA";
 import { Footer } from "@/components/mhs/Footer";
 
-const TITLE = "MHS-Productions | Content & Campaign Systems For Local Business Growth";
+const SITE = "https://attention-to-customer.lovable.app";
+const TITLE = "MHS-Productions | Turn Attention Into Customers";
 const DESCRIPTION =
-  "MHS-Productions helps local businesses turn attention into customers through social media content, Meta ads, landing pages, WhatsApp funnels, and conversion-focused campaign systems.";
+  "MHS-Productions builds the system that connects Meta ads, social content, landing pages, and WhatsApp into one customer acquisition engine for local businesses in Lahore and across Pakistan.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
-      { name: "keywords", content: "content production agency, digital growth agency, Meta ads agency, landing page agency, WhatsApp funnel agency, social media content agency, local business marketing, customer acquisition agency, MHS-Productions" },
+      {
+        name: "keywords",
+        content:
+          "Meta ads agency Lahore, content production Pakistan, WhatsApp funnel agency, landing page agency, growth audit, customer acquisition agency, MHS-Productions",
+      },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: SITE + "/" },
+      { property: "og:site_name", content: "MHS-Productions" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: SITE + "/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -42,14 +46,16 @@ export const Route = createFileRoute("/")({
           "@type": "ProfessionalService",
           name: "MHS-Productions",
           description: DESCRIPTION,
-          areaServed: "Local businesses",
+          url: SITE,
+          areaServed: ["Lahore", "Pakistan"],
+          address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
           serviceType: [
+            "Meta Ads",
             "Social Media Content Production",
-            "Meta Ads Campaigns",
             "Landing Page Design",
             "WhatsApp Funnels",
             "Growth Audits",
-            "Campaign Strategy",
+            "Google Business Profile Optimization",
           ],
         }),
       },
@@ -58,10 +64,11 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: [
-            { "@type": "Question", name: "What does MHS-Productions do?", acceptedAnswer: { "@type": "Answer", text: "We build connected growth systems combining content, Meta ads, landing pages, and WhatsApp funnels for local businesses." } },
-            { "@type": "Question", name: "What is a growth audit?", acceptedAnswer: { "@type": "Answer", text: "A free diagnostic of your content, ads, landing page, WhatsApp flow, offer, and competitors with a 30-day action plan." } },
-          ],
+          mainEntity: FAQ_ITEMS.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
         }),
       },
     ],
@@ -75,16 +82,14 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
-        <TrustBar />
         <ProblemSection />
         <GrowthSystem />
+        <WhoWeWorkWith />
+        <OfferSection />
         <Services />
-        <CampaignFlow />
         <CaseStudies />
         <Process />
-        <OfferSection />
-        <Pricing />
-        <Testimonials />
+        <GrowthTest />
         <FAQ />
         <FinalCTA />
       </main>
