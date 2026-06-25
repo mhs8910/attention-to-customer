@@ -82,17 +82,18 @@ function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
-        <Hero />
+        <HeroReveal />
         <ProblemSection />
-        <GrowthSystem />
+        <TransitionSection />
+        <SystemAssembly />
         <WhoWeWorkWith />
         <OfferSection />
         <Services />
         <CaseStudies />
-        <Process />
+        <ProcessTimeline />
         <GrowthTest />
         <FAQ />
-        <FinalCTA />
+        <FinalCTAAnimated />
       </main>
       <Footer />
     </div>
