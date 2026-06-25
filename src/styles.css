@@ -253,3 +253,26 @@
 @media (prefers-reduced-motion: reduce) {
   .pulse-dots { animation: none; }
 }
+
+@keyframes cta-rise {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 0.6; }
+  100% { transform: translateY(-220px); opacity: 0; }
+}
+.cta-particle {
+  position: absolute;
+  bottom: 0;
+  border-radius: 9999px;
+  background: rgba(0, 198, 167, 0.18);
+  animation: cta-rise linear infinite;
+  pointer-events: none;
+}
+
+.m-item.m-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-particle { animation: none; opacity: 0; }
+}
