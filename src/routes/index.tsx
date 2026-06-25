@@ -1,16 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/mhs/Navbar";
-import { Hero } from "@/components/mhs/Hero";
+import { HeroReveal } from "@/components/animations/HeroReveal";
 import { ProblemSection } from "@/components/mhs/ProblemSection";
-import { GrowthSystem } from "@/components/mhs/GrowthSystem";
+import { TransitionSection } from "@/components/animations/TransitionSection";
+import { SystemAssembly } from "@/components/animations/SystemAssembly";
 import { WhoWeWorkWith } from "@/components/mhs/WhoWeWorkWith";
 import { OfferSection } from "@/components/mhs/OfferSection";
 import { Services } from "@/components/mhs/Services";
 import { CaseStudies } from "@/components/mhs/CaseStudies";
-import { Process } from "@/components/mhs/Process";
+import { ProcessTimeline } from "@/components/animations/ProcessTimeline";
 import { GrowthTest } from "@/components/mhs/GrowthTest";
 import { FAQ, FAQ_ITEMS } from "@/components/mhs/FAQ";
-import { FinalCTA } from "@/components/mhs/FinalCTA";
+import { FinalCTAAnimated } from "@/components/animations/FinalCTAAnimated";
 import { Footer } from "@/components/mhs/Footer";
 
 const SITE = "https://attention-to-customer.lovable.app";
@@ -81,17 +82,18 @@ function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
-        <Hero />
+        <HeroReveal />
         <ProblemSection />
-        <GrowthSystem />
+        <TransitionSection />
+        <SystemAssembly />
         <WhoWeWorkWith />
         <OfferSection />
         <Services />
         <CaseStudies />
-        <Process />
+        <ProcessTimeline />
         <GrowthTest />
         <FAQ />
-        <FinalCTA />
+        <FinalCTAAnimated />
       </main>
       <Footer />
     </div>
