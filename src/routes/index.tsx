@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/mhs/Navbar";
+import { PageBackground } from "@/components/mhs/PageBackground";
 import { AnimatedHeroSection } from "@/components/animations/AnimatedHeroSection";
 import { ProblemSection } from "@/components/mhs/ProblemSection";
 import { TransitionSection } from "@/components/animations/TransitionSection";
@@ -79,7 +80,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-[#030712] text-foreground relative">
+      <PageBackground variant="hero" />
       <Navbar />
       <main>
         <AnimatedHeroSection />

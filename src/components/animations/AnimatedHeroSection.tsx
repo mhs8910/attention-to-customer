@@ -165,40 +165,40 @@ export function AnimatedHeroSection() {
     offset: ["start start", "end end"],
   });
 
-  // Hero copy
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.12, 0.32, 0.42], [0, 1, 1, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 0.12], [40, 0]);
-  const heroBlur = useTransform(scrollYProgress, [0, 0.12], [12, 0]);
+  // Hero copy: visible immediately
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.08, 0.30, 0.38], [1, 1, 1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 0.08], [20, 0]);
+  const heroBlur = useTransform(scrollYProgress, [0, 0.08], [6, 0]);
   const heroFilter = useTransform(heroBlur, (v) => `blur(${v}px)`);
 
   // Dashboard
-  const dashboardY = useTransform(scrollYProgress, [0.18, 0.42], [180, 0]);
-  const dashboardScale = useTransform(scrollYProgress, [0.18, 0.42], [0.9, 1]);
+  const dashboardY = useTransform(scrollYProgress, [0.28, 0.50], [160, 0]);
+  const dashboardScale = useTransform(scrollYProgress, [0.28, 0.50], [0.88, 1]);
   const dashboardOpacity = useTransform(
     scrollYProgress,
-    [0.18, 0.35, 0.85, 0.95],
+    [0.28, 0.45, 0.88, 0.96],
     [0, 1, 1, 0]
   );
-  const dashboardBlur = useTransform(scrollYProgress, [0.18, 0.42], [18, 0]);
+  const dashboardBlur = useTransform(scrollYProgress, [0.28, 0.50], [18, 0]);
   const dashboardFilter = useTransform(dashboardBlur, (v) => `blur(${v}px)`);
 
-  // Background ghost typography
-  const bgTextY = useTransform(scrollYProgress, [0, 1], [120, -420]);
-  const bgTextOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8], [0.04, 0.1, 0.05]);
+  // Ghost typography parallax
+  const bgTextY = useTransform(scrollYProgress, [0, 1], [80, -300]);
+  const bgTextOpacity = useTransform(scrollYProgress, [0, 0.15, 0.75, 1.0], [0.06, 0.1, 0.07, 0.03]);
 
-  // Conversion arc glow
-  const glowScale = useTransform(scrollYProgress, [0.15, 0.5, 0.9], [0.8, 1.15, 0.95]);
-  const glowOpacity = useTransform(scrollYProgress, [0.15, 0.5, 0.9], [0.15, 0.55, 0.25]);
+  // Glow
+  const glowScale = useTransform(scrollYProgress, [0, 0.4, 0.9], [0.9, 1.1, 0.95]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.4, 0.9], [0.2, 0.5, 0.2]);
 
-  // Connection lines
-  const linePathLength = useTransform(scrollYProgress, [0.25, 0.55], [0, 1]);
+  // Lines appear with dashboard
+  const linePathLength = useTransform(scrollYProgress, [0.35, 0.60], [0, 1]);
 
   return (
     <section
       ref={sectionRef}
       id="top"
-      className="relative bg-[#030712]"
-      style={{ height: reduced ? "auto" : "650vh" }}
+      className="relative bg-[#030712] h-[400vh] md:h-[550vh]"
+      style={reduced ? { height: "auto" } : undefined}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Layer 1: gradients */}
@@ -259,24 +259,31 @@ export function AnimatedHeroSection() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal/25 bg-teal/5 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
               <span className="text-[10px] md:text-xs font-ui uppercase tracking-[0.22em] text-teal">
-                Meta Ads · Content Systems · WhatsApp Funnels
+                Lahore's Growth System for Local Businesses
               </span>
             </div>
 
-            <h1 className="font-display font-bold text-[2.4rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight text-creator-white">
-              ATTENTION <span className="text-teal">→</span>{" "}
+            <h1 className="font-display font-bold text-[2.4rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-[5rem] tracking-tight text-creator-white">
+              Your Business Gets{" "}
+              <span
+                className="text-teal"
+                style={{ textShadow: "0 0 40px rgba(0,198,167,0.4)" }}
+              >
+                Views.
+              </span>
+              <br />
+              We Turn Them Into{" "}
               <span
                 className="text-gold"
-                style={{ textShadow: "0 0 50px rgba(240,165,0,0.45)" }}
+                style={{ textShadow: "0 0 50px rgba(240,165,0,0.5)" }}
               >
-                CUSTOMERS
+                Customers.
               </span>
             </h1>
 
             <p className="mt-7 max-w-2xl mx-auto text-base md:text-lg text-cool-gray leading-relaxed font-brand">
-              Most businesses get views. Few turn them into customers. MHS-Productions connects
-              websites, content, Google presence, ads, and WhatsApp into one customer acquisition
-              system.
+              MHS-Productions builds the complete customer acquisition system — websites, content, ads,
+              Google, and WhatsApp — so every rupee of attention you earn converts into an inquiry.
             </p>
 
             <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -297,8 +304,7 @@ export function AnimatedHeroSection() {
             </div>
 
             <p className="mt-10 text-xs md:text-sm text-cool-gray/80 font-ui">
-              Built for realtors, clinics, solar companies, restaurants, and local businesses
-              across Lahore and Pakistan.
+              Trusted by aesthetic clinics, solar companies, realtors &amp; restaurants in Lahore and across Pakistan.
             </p>
           </div>
         </motion.div>

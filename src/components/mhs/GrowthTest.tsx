@@ -17,7 +17,7 @@ const APPLY_URL = whatsappUrl(
 
 export function GrowthTest() {
   return (
-    <section className="relative" style={{ background: "#091B32" }}>
+    <section className="relative">
       <div className="section-padding">
         <div className="mx-auto max-w-5xl">
           <Reveal>

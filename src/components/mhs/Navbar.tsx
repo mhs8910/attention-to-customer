@@ -4,11 +4,11 @@ import { Logo } from "./Logo";
 import { WA_DEFAULT, trackCtaClick } from "@/lib/whatsapp";
 
 const links = [
-  { label: "System", href: "#growth-system" },
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "FAQ", href: "#faq" },
+  { label: "System", href: "/#growth-system" },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/work" },
+  { label: "Process", href: "/process" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
