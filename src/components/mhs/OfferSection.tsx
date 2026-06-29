@@ -17,7 +17,7 @@ export function OfferSection() {
   };
 
   return (
-    <section id="audit" className="relative overflow-hidden" style={{ background: "#091B32" }}>
+    <section id="audit" className="relative overflow-hidden">
       <div className="section-padding relative">
         <div className="absolute inset-0 -z-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-teal/15 rounded-full blur-3xl" />
