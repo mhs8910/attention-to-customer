@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/mhs/Navbar";
-import { HeroReveal } from "@/components/animations/HeroReveal";
+import { AnimatedHeroSection } from "@/components/animations/AnimatedHeroSection";
 import { ProblemSection } from "@/components/mhs/ProblemSection";
 import { TransitionSection } from "@/components/animations/TransitionSection";
 import { SystemAssembly } from "@/components/animations/SystemAssembly";
@@ -82,7 +82,7 @@ function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
-        <HeroReveal />
+        <AnimatedHeroSection />
         <ProblemSection />
         <TransitionSection />
         <SystemAssembly />
