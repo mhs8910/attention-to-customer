@@ -304,8 +304,7 @@ export function AnimatedHeroSection() {
             </div>
 
             <p className="mt-10 text-xs md:text-sm text-cool-gray/80 font-ui">
-              Built for realtors, clinics, solar companies, restaurants, and local businesses
-              across Lahore and Pakistan.
+              Trusted by aesthetic clinics, solar companies, realtors &amp; restaurants in Lahore and across Pakistan.
             </p>
           </div>
         </motion.div>
