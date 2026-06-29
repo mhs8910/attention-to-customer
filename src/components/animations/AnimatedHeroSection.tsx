@@ -197,8 +197,8 @@ export function AnimatedHeroSection() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative bg-[#030712]"
-      style={{ height: reduced ? "auto" : "650vh" }}
+      className="relative bg-[#030712] h-[400vh] md:h-[550vh]"
+      style={reduced ? { height: "auto" } : undefined}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Layer 1: gradients */}
