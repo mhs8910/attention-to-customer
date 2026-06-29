@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/mhs/Navbar";
+import { PageBackground } from "@/components/mhs/PageBackground";
 import { AnimatedHeroSection } from "@/components/animations/AnimatedHeroSection";
 import { ProblemSection } from "@/components/mhs/ProblemSection";
 import { TransitionSection } from "@/components/animations/TransitionSection";
