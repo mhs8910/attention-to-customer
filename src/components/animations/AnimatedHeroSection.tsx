@@ -259,24 +259,31 @@ export function AnimatedHeroSection() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal/25 bg-teal/5 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
               <span className="text-[10px] md:text-xs font-ui uppercase tracking-[0.22em] text-teal">
-                Meta Ads · Content Systems · WhatsApp Funnels
+                Lahore's Growth System for Local Businesses
               </span>
             </div>
 
-            <h1 className="font-display font-bold text-[2.4rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight text-creator-white">
-              ATTENTION <span className="text-teal">→</span>{" "}
+            <h1 className="font-display font-bold text-[2.4rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-[5rem] tracking-tight text-creator-white">
+              Your Business Gets{" "}
+              <span
+                className="text-teal"
+                style={{ textShadow: "0 0 40px rgba(0,198,167,0.4)" }}
+              >
+                Views.
+              </span>
+              <br />
+              We Turn Them Into{" "}
               <span
                 className="text-gold"
-                style={{ textShadow: "0 0 50px rgba(240,165,0,0.45)" }}
+                style={{ textShadow: "0 0 50px rgba(240,165,0,0.5)" }}
               >
-                CUSTOMERS
+                Customers.
               </span>
             </h1>
 
             <p className="mt-7 max-w-2xl mx-auto text-base md:text-lg text-cool-gray leading-relaxed font-brand">
-              Most businesses get views. Few turn them into customers. MHS-Productions connects
-              websites, content, Google presence, ads, and WhatsApp into one customer acquisition
-              system.
+              MHS-Productions builds the complete customer acquisition system — websites, content, ads,
+              Google, and WhatsApp — so every rupee of attention you earn converts into an inquiry.
             </p>
 
             <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
