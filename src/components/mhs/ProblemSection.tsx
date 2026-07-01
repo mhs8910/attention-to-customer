@@ -26,7 +26,11 @@ const problems = [
 
 export function ProblemSection() {
   return (
-    <section className="section-padding relative">
+    <section className="section-padding section-bg relative overflow-hidden bg-[#030712]">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
+        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ top: "10%", left: "-2%", fontSize: "14vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>LEAKING</span>
+        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ bottom: "8%", right: "-2%", fontSize: "12vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>VIEWS</span>
+      </div>
       <div className="absolute inset-0 -z-10 grid-bg opacity-20" />
       <div className="mx-auto max-w-6xl">
         <Reveal>

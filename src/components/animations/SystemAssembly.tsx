@@ -96,8 +96,8 @@ export function SystemAssembly() {
   if (mobile) return <MobileStack />;
 
   return (
-    <section id="growth-system" ref={rootRef} className="relative">
-      <div className="sa-pin-target relative h-screen w-full overflow-hidden bg-deep-navy">
+    <section id="growth-system" ref={rootRef} className="relative bg-[#030712]">
+      <div className="sa-pin-target relative h-screen w-full overflow-hidden bg-[#030712]">
         <div className="absolute inset-0 grid-bg opacity-30" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[600px] bg-teal/5 rounded-full blur-3xl" />
 

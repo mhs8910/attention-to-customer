@@ -20,7 +20,7 @@ const others = ["Gyms", "Restaurants", "Training Institutes", "Real Estate", "Lo
 
 export function WhoWeWorkWith() {
   return (
-    <section className="section-padding relative">
+    <section className="section-padding section-bg relative bg-[#030712]">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <div className="max-w-3xl mb-12">

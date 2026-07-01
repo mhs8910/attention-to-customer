@@ -37,8 +37,8 @@ export function TransitionSection() {
   return (
     <section
       ref={rootRef}
-      className="relative py-32 md:py-40"
-      style={{ backgroundColor: "#061020" }}
+      className="relative py-32 md:py-40 bg-[#030712]"
+      style={{ backgroundColor: "#030712" }}
     >
       <div className="absolute inset-0 grid-bg opacity-20" />
       <div className="mx-auto max-w-3xl px-6 text-center relative">

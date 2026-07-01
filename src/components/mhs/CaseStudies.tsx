@@ -23,7 +23,7 @@ const projects = [
 
 export function CaseStudies() {
   return (
-    <section id="work" className="section-padding relative">
+    <section id="work" className="section-padding section-bg relative bg-[#030712]">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <div className="max-w-3xl mb-12">

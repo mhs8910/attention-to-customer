@@ -32,7 +32,11 @@ export function FinalCTAAnimated() {
   const particles = Array.from({ length: 24 }, (_, i) => i);
 
   return (
-    <section ref={rootRef} className="final-cta section-padding relative overflow-hidden">
+    <section ref={rootRef} className="final-cta section-padding relative overflow-hidden bg-[#030712]">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
+        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ top: "10%", left: "-2%", fontSize: "14vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>CUSTOMERS</span>
+        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ bottom: "8%", right: "-2%", fontSize: "12vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>START</span>
+      </div>
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-teal/15 rounded-full blur-3xl" />
         <div className="absolute inset-0 grid-bg opacity-20" />
