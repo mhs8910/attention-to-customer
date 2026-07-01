@@ -54,7 +54,7 @@ export function ProcessTimeline() {
   }, []);
 
   return (
-    <section id="process" ref={rootRef} className="section-padding relative">
+    <section id="process" ref={rootRef} className="section-padding section-bg relative bg-[#030712]">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl mb-14">
           <div className="label-eyebrow mb-4">How We Work</div>
