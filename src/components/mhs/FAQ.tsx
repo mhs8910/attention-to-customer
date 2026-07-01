@@ -50,8 +50,12 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="section-padding relative">
-      <div className="mx-auto max-w-3xl">
+    <section id="faq" className="section-padding section-bg relative overflow-hidden bg-[#030712]">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
+        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ top: "10%", left: "-2%", fontSize: "14vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>QUESTIONS</span>
+        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ bottom: "8%", right: "-2%", fontSize: "12vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>SYSTEM</span>
+      </div>
+      <div className="mx-auto max-w-3xl relative">
         <Reveal>
           <div className="text-center mb-10">
             <div className="label-eyebrow mb-4">FAQ</div>
