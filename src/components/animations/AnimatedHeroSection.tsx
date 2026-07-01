@@ -197,7 +197,7 @@ export function AnimatedHeroSection() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative bg-[#030712] h-[400vh] md:h-[550vh]"
+      className="relative bg-[#030712] h-[500vh] md:h-[600vh]"
       style={reduced ? { height: "auto" } : undefined}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
