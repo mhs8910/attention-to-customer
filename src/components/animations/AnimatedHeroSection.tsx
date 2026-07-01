@@ -228,8 +228,8 @@ export function AnimatedHeroSection() {
             scale: glowScale,
             opacity: glowOpacity,
             background:
-              "radial-gradient(ellipse at 25% 50%, rgba(0,198,167,0.55), transparent 55%), radial-gradient(ellipse at 75% 50%, rgba(240,165,0,0.6), transparent 55%)",
-            filter: "blur(40px)",
+              "radial-gradient(ellipse at 25% 50%, rgba(0,198,167,0.30), transparent 55%), radial-gradient(ellipse at 75% 50%, rgba(240,165,0,0.35), transparent 55%)",
+            filter: "blur(60px)",
           }}
         />
 
