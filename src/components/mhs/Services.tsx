@@ -36,8 +36,12 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="section-padding relative">
-      <div className="mx-auto max-w-7xl">
+    <section id="services" className="section-padding section-bg relative overflow-hidden bg-[#030712]">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
+        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ top: "10%", left: "-2%", fontSize: "14vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>SERVICES</span>
+        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ bottom: "8%", right: "-2%", fontSize: "12vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>GROWTH</span>
+      </div>
+      <div className="mx-auto max-w-7xl relative">
         <Reveal>
           <div className="max-w-3xl mb-12">
             <div className="label-eyebrow mb-4">Services</div>
