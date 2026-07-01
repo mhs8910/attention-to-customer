@@ -165,33 +165,33 @@ export function AnimatedHeroSection() {
     offset: ["start start", "end end"],
   });
 
-  // Hero copy: visible immediately
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.08, 0.30, 0.38], [1, 1, 1, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 0.08], [20, 0]);
-  const heroBlur = useTransform(scrollYProgress, [0, 0.08], [6, 0]);
+  // Hero copy: sharp on load, fades between 35–50%
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.02, 0.35, 0.50], [1, 1, 1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 0.05], [8, 0]);
+  const heroBlur = useTransform(scrollYProgress, [0, 0.05], [2, 0]);
   const heroFilter = useTransform(heroBlur, (v) => `blur(${v}px)`);
 
-  // Dashboard
-  const dashboardY = useTransform(scrollYProgress, [0.28, 0.50], [160, 0]);
-  const dashboardScale = useTransform(scrollYProgress, [0.28, 0.50], [0.88, 1]);
+  // Dashboard: appears only AFTER hero is gone
+  const dashboardY = useTransform(scrollYProgress, [0.52, 0.72], [140, 0]);
+  const dashboardScale = useTransform(scrollYProgress, [0.52, 0.72], [0.90, 1]);
   const dashboardOpacity = useTransform(
     scrollYProgress,
-    [0.28, 0.45, 0.88, 0.96],
+    [0.52, 0.68, 0.92, 0.98],
     [0, 1, 1, 0]
   );
-  const dashboardBlur = useTransform(scrollYProgress, [0.28, 0.50], [18, 0]);
+  const dashboardBlur = useTransform(scrollYProgress, [0.52, 0.72], [16, 0]);
   const dashboardFilter = useTransform(dashboardBlur, (v) => `blur(${v}px)`);
 
-  // Ghost typography parallax
+  // Ghost typography parallax — much lower opacity
   const bgTextY = useTransform(scrollYProgress, [0, 1], [80, -300]);
-  const bgTextOpacity = useTransform(scrollYProgress, [0, 0.15, 0.75, 1.0], [0.06, 0.1, 0.07, 0.03]);
+  const bgTextOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1.0], [0.035, 0.06, 0.04, 0.02]);
 
-  // Glow
-  const glowScale = useTransform(scrollYProgress, [0, 0.4, 0.9], [0.9, 1.1, 0.95]);
-  const glowOpacity = useTransform(scrollYProgress, [0, 0.4, 0.9], [0.2, 0.5, 0.2]);
+  // Glow — gentle
+  const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.0, 1.08, 0.95]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.18, 0.40, 0.15]);
 
-  // Lines appear with dashboard
-  const linePathLength = useTransform(scrollYProgress, [0.35, 0.60], [0, 1]);
+  // Lines follow dashboard
+  const linePathLength = useTransform(scrollYProgress, [0.60, 0.82], [0, 1]);
 
   return (
     <section
