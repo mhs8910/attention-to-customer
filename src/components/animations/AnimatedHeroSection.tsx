@@ -143,10 +143,12 @@ function GhostWord({
         top: word.top,
         left: word.left,
         fontSize: word.size,
-        filter: "blur(2px)",
+        filter: "blur(3px)",
         y: bgTextY,
         opacity: bgTextOpacity,
         letterSpacing: "-0.04em",
+        userSelect: "none",
+        pointerEvents: "none",
       }}
     >
       {word.text}
