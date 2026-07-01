@@ -14,13 +14,11 @@ import {
 import { WA_DEFAULT, trackCtaClick } from "@/lib/whatsapp";
 
 const GHOST_WORDS = [
-  { text: "ATTENTION", top: "6%", left: "-4%", size: "18vw" },
-  { text: "CUSTOMERS", top: "62%", left: "8%", size: "22vw" },
-  { text: "GROWTH", top: "34%", left: "60%", size: "16vw" },
-  { text: "SYSTEM", top: "78%", left: "55%", size: "20vw" },
-  { text: "FUNNELS", top: "18%", left: "70%", size: "14vw" },
-  { text: "TRUST", top: "50%", left: "-2%", size: "15vw" },
-  { text: "LEADS", top: "88%", left: "25%", size: "16vw" },
+  { text: "GROWTH", top: "5%", left: "-2%", size: "11vw" },
+  { text: "SYSTEM", top: "70%", left: "62%", size: "13vw" },
+  { text: "LEADS", top: "25%", left: "72%", size: "9vw" },
+  { text: "TRUST", top: "55%", left: "-1%", size: "10vw" },
+  { text: "FUNNELS", top: "80%", left: "20%", size: "10vw" },
 ];
 
 type DashCard = {
