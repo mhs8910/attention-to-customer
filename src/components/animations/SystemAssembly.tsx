@@ -1,31 +1,69 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Target, Film, MousePointerClick, MessageCircle, RefreshCw, BarChart3, Users } from "lucide-react";
+import { ArrowRight, Calendar, Camera, Scissors, Send, TrendingUp } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { gsap, ScrollTrigger, prefersReducedMotion, isMobile } from "@/lib/gsap";
 import { WA_DEFAULT, trackCtaClick } from "@/lib/whatsapp";
 
-type Mod = {
+type Stage = {
   id: string;
   num: string;
   name: string;
-  outcome: string;
   desc: string;
   Icon: LucideIcon;
   x: number;
   y: number;
+  gold?: boolean;
 };
 
-// Canvas: 900 x 500
-const MODS: Mod[] = [
-  { id: "n1", num: "01", name: "Meta Ads", outcome: "Paid attention — targeted and reaching the right people.", desc: "Lead, retargeting, awareness campaigns on Facebook & Instagram.", Icon: Target, x: 80, y: 120 },
-  { id: "n2", num: "02", name: "Content System", outcome: "Reels and posts that build trust and pull the right audience.", desc: "Trust content that turns scrollers into qualified inquiries.", Icon: Film, x: 230, y: 250 },
-  { id: "n3", num: "03", name: "Landing Page", outcome: "A page built to convert clicks into inquiries.", desc: "Conversion-focused pages — bookings, WhatsApp clicks, forms.", Icon: MousePointerClick, x: 380, y: 130 },
-  { id: "n4", num: "04", name: "WhatsApp Funnel", outcome: "Structured replies that qualify and book leads.", desc: "Automated flows that capture and book leads on WhatsApp.", Icon: MessageCircle, x: 530, y: 250 },
-  { id: "n5", num: "05", name: "Follow-Up System", outcome: "Nurture flows that recover leads who don't reply.", desc: "Sequenced follow-ups that re-engage dropped conversations.", Icon: RefreshCw, x: 680, y: 130 },
-  { id: "n6", num: "06", name: "Performance Tracking", outcome: "Weekly performance review on every channel.", desc: "Live tracking — what's working, what to cut, what to scale.", Icon: BarChart3, x: 830, y: 250 },
+// Canvas: 1080 x 320 — horizontal 5-stage assembly line
+const STAGES: Stage[] = [
+  {
+    id: "s1",
+    num: "01",
+    name: "Plan",
+    desc: "Monthly strategy session to define your content pillars, campaign direction, shoot brief, and content calendar. We decide what to create and why before we touch a camera.",
+    Icon: Calendar,
+    x: 110,
+    y: 160,
+  },
+  {
+    id: "s2",
+    num: "02",
+    name: "Shoot",
+    desc: "Coordinated shoot day(s) at your location. We direct everything — Reels, B-roll, treatment processes, staff introductions, product showcases. You just show up. We handle the rest.",
+    Icon: Camera,
+    x: 300,
+    y: 160,
+  },
+  {
+    id: "s3",
+    num: "03",
+    name: "Edit",
+    desc: "Professional video editing, caption writing, graphic design, and carousel creation. Every piece goes through our quality standard before it reaches your profile.",
+    Icon: Scissors,
+    x: 490,
+    y: 160,
+  },
+  {
+    id: "s4",
+    num: "04",
+    name: "Post",
+    desc: "Scheduled publishing across Instagram (primary), Facebook, and secondary platforms with optimized captions, hashtags, and posting times. Nothing goes live without your approval.",
+    Icon: Send,
+    x: 680,
+    y: 160,
+  },
+  {
+    id: "s5",
+    num: "05",
+    name: "Grow",
+    desc: "Monthly performance review, insights report, and content direction for next month. Your results compound over time. Consistent content builds trust faster than any single viral post.",
+    Icon: TrendingUp,
+    x: 870,
+    y: 160,
+    gold: true,
+  },
 ];
-
-const OUTPUT = { x: 980, y: 190, name: "CUSTOMERS" };
 
 function pathD(a: { x: number; y: number }, b: { x: number; y: number }) {
   const mx = (a.x + b.x) / 2;
@@ -46,16 +84,11 @@ export function SystemAssembly() {
   useEffect(() => {
     if (mobile || prefersReducedMotion()) return;
     const ctx = gsap.context(() => {
-      // Initial state
       gsap.set(".sa-node", { opacity: 0, scale: 0.7, transformOrigin: "center" });
-      gsap.set(".sa-label", { opacity: 0, y: 8 });
-      gsap.set(".sa-sidebar-item", { opacity: 0.15, x: 0 });
-      gsap.set(".sa-sidebar-item.active", { opacity: 1 });
+      gsap.set(".sa-sidebar-item", { opacity: 0.15 });
       gsap.set(".sa-path", { strokeDasharray: 600, strokeDashoffset: 600 });
       gsap.set(".sa-dot", { opacity: 0 });
-      gsap.set(".sa-output", { opacity: 0, scale: 0.6 });
-      gsap.set(".sa-final-cta", { opacity: 0, y: 16 });
-      gsap.set(".sa-final-headline", { opacity: 0, y: 12 });
+      gsap.set(".sa-final", { opacity: 0, y: 16 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -63,32 +96,25 @@ export function SystemAssembly() {
           pin: ".sa-pin-target",
           scrub: 1.2,
           start: "top top",
-          end: "+=600%",
+          end: "+=550%",
           anticipatePin: 1,
         },
       });
 
-      // 6 module reveals across 0..0.9, final 0.9..1
-      for (let i = 0; i < MODS.length; i++) {
-        const m = MODS[i];
-        const start = i * (0.9 / 6);
-        tl.to(`#node-${m.id}`, { opacity: 1, scale: 1, duration: 0.05 }, start);
-        tl.to(`#label-${m.id}`, { opacity: 1, y: 0, duration: 0.05 }, start + 0.01);
-        tl.to(`.sidebar-${m.id}`, { opacity: 1, duration: 0.03 }, start);
+      for (let i = 0; i < STAGES.length; i++) {
+        const s = STAGES[i];
+        const start = i * (0.85 / STAGES.length);
+        tl.to(`#node-${s.id}`, { opacity: 1, scale: 1, duration: 0.05 }, start);
+        tl.to(`.sidebar-${s.id}`, { opacity: 1, duration: 0.04 }, start);
         if (i > 0) {
-          const pid = `#path-${MODS[i - 1].id}-${m.id}`;
-          tl.to(pid, { strokeDashoffset: 0, duration: 0.07 }, start);
-          tl.to(`#dot-${MODS[i - 1].id}-${m.id}`, { opacity: 1, duration: 0.02 }, start);
+          const pid = `#path-${STAGES[i - 1].id}-${s.id}`;
+          tl.to(pid, { strokeDashoffset: 0, duration: 0.08 }, start);
+          tl.to(`#dot-${STAGES[i - 1].id}-${s.id}`, { opacity: 1, duration: 0.02 }, start);
         }
       }
 
-      // Final
-      tl.to(".sa-node", { scale: 1.08, duration: 0.04, yoyo: true, repeat: 1 }, 0.9);
-      tl.to(".sa-output", { opacity: 1, scale: 1, duration: 0.05 }, 0.92);
-      tl.to("#path-n6-out", { strokeDashoffset: 0, duration: 0.05 }, 0.93);
-      tl.to("#dot-n6-out", { opacity: 1, duration: 0.02 }, 0.95);
-      tl.to(".sa-final-headline", { opacity: 1, y: 0, duration: 0.05 }, 0.96);
-      tl.to(".sa-final-cta", { opacity: 1, y: 0, duration: 0.05 }, 0.97);
+      tl.to(".sa-node", { scale: 1.06, duration: 0.04, yoyo: true, repeat: 1 }, 0.88);
+      tl.to(".sa-final", { opacity: 1, y: 0, duration: 0.06 }, 0.92);
     }, rootRef);
     return () => ctx.revert();
   }, [mobile]);
@@ -96,30 +122,37 @@ export function SystemAssembly() {
   if (mobile) return <MobileStack />;
 
   return (
-    <section id="growth-system" ref={rootRef} className="relative bg-[#030712]">
+    <section id="system" ref={rootRef} className="relative bg-[#030712]">
       <div className="sa-pin-target relative h-screen w-full overflow-hidden bg-[#030712]">
         <div className="absolute inset-0 grid-bg opacity-30" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[600px] bg-teal/5 rounded-full blur-3xl" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
+          <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ top: "8%", left: "-2%", fontSize: "13vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>CONTENT</span>
+          <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ bottom: "5%", right: "-2%", fontSize: "11vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>ENGINE</span>
+        </div>
 
         <div className="relative h-full mx-auto max-w-7xl px-6 grid grid-rows-[auto_1fr_auto] py-10">
           <div className="text-center">
-            <div className="label-eyebrow mb-3">The MHS Growth System</div>
+            <div className="label-eyebrow mb-3">The System</div>
             <h2 className="text-2xl md:text-4xl font-display font-bold text-creator-white">
-              Watch attention turn into{" "}
-              <span className="text-gradient-teal-gold">customers.</span>
+              The Content Growth <span className="text-gradient-teal-gold">Engine™</span>
             </h2>
+            <p className="mt-3 text-cool-gray font-brand text-sm md:text-base max-w-2xl mx-auto">
+              A five-stage monthly content operations system. Not just posting — a complete,
+              accountable content cycle delivered every single month.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-[1fr_280px] gap-6 items-center mt-4">
+          <div className="grid md:grid-cols-[1fr_320px] gap-6 items-center mt-4">
             {/* Canvas */}
             <div className="relative w-full">
               <svg
-                viewBox="0 0 1080 500"
-                className="w-full h-auto max-h-[60vh]"
+                viewBox="0 0 1000 320"
+                className="w-full h-auto max-h-[55vh]"
                 preserveAspectRatio="xMidYMid meet"
               >
                 <defs>
-                  <filter id="tealGlow">
+                  <filter id="tealGlowSys">
                     <feGaussianBlur stdDeviation="3" result="b" />
                     <feMerge>
                       <feMergeNode in="b" />
@@ -128,164 +161,129 @@ export function SystemAssembly() {
                   </filter>
                 </defs>
 
-                {/* Paths */}
-                {MODS.slice(1).map((m, i) => {
-                  const prev = MODS[i];
+                {STAGES.slice(1).map((s, i) => {
+                  const prev = STAGES[i];
+                  const finalStage = i === STAGES.length - 2;
                   return (
                     <path
-                      key={`p-${prev.id}-${m.id}`}
-                      id={`path-${prev.id}-${m.id}`}
-                      d={pathD(prev, m)}
+                      key={`p-${prev.id}-${s.id}`}
+                      id={`path-${prev.id}-${s.id}`}
+                      d={pathD(prev, s)}
                       className="sa-path"
-                      stroke="#00C6A7"
+                      stroke={finalStage ? "#F0A500" : "#00C6A7"}
                       strokeWidth={2}
                       fill="none"
-                      filter="url(#tealGlow)"
+                      filter="url(#tealGlowSys)"
                     />
                   );
                 })}
-                <path
-                  id="path-n6-out"
-                  d={pathD(MODS[5], OUTPUT)}
-                  className="sa-path"
-                  stroke="#00C6A7"
-                  strokeWidth={2}
-                  fill="none"
-                  filter="url(#tealGlow)"
-                />
 
-                {/* Traveling dots */}
-                {MODS.slice(1).map((m, i) => {
-                  const prev = MODS[i];
-                  const mid = { x: (prev.x + m.x) / 2, y: (prev.y + m.y) / 2 };
+                {STAGES.slice(1).map((s, i) => {
+                  const prev = STAGES[i];
+                  const mid = { x: (prev.x + s.x) / 2, y: (prev.y + s.y) / 2 };
                   return (
                     <circle
-                      key={`d-${prev.id}-${m.id}`}
-                      id={`dot-${prev.id}-${m.id}`}
+                      key={`d-${prev.id}-${s.id}`}
+                      id={`dot-${prev.id}-${s.id}`}
                       className="sa-dot"
                       cx={mid.x}
                       cy={mid.y}
                       r={4}
                       fill="#F0A500"
                     >
-                      <animateMotion dur="2.2s" repeatCount="indefinite" path={pathD(prev, m)} />
+                      <animateMotion dur="2.2s" repeatCount="indefinite" path={pathD(prev, s)} />
                     </circle>
                   );
                 })}
-                <circle
-                  id="dot-n6-out"
-                  className="sa-dot"
-                  cx={MODS[5].x}
-                  cy={MODS[5].y}
-                  r={5}
-                  fill="#F0A500"
-                >
-                  <animateMotion dur="2.2s" repeatCount="indefinite" path={pathD(MODS[5], OUTPUT)} />
-                </circle>
 
-                {/* Nodes */}
-                {MODS.map((m) => (
-                  <g key={m.id} id={`node-${m.id}`} className="sa-node">
-                    <rect
-                      x={m.x - 46}
-                      y={m.y - 36}
-                      width={92}
-                      height={72}
-                      rx={12}
-                      fill="#0A1828"
-                      stroke="#00C6A7"
-                      strokeWidth={1.5}
-                      strokeOpacity={0.5}
-                    />
-                    <foreignObject x={m.x - 14} y={m.y - 26} width={28} height={28}>
-                      <div className="w-7 h-7 rounded-md bg-teal/15 flex items-center justify-center">
-                        <m.Icon className="w-4 h-4 text-teal" />
-                      </div>
-                    </foreignObject>
-                    <text
-                      x={m.x}
-                      y={m.y + 18}
-                      textAnchor="middle"
-                      fill="#F8FAFC"
-                      fontSize={10}
-                      fontFamily="Sora, sans-serif"
-                      fontWeight={600}
-                    >
-                      {m.name}
-                    </text>
-                    <text
-                      x={m.x}
-                      y={m.y - 42}
-                      textAnchor="middle"
-                      fill="#00C6A7"
-                      fontSize={8}
-                      fontFamily="Space Grotesk, sans-serif"
-                      letterSpacing={2}
-                    >
-                      {m.num}
-                    </text>
-                  </g>
-                ))}
-
-                {/* Output */}
-                <g id="node-out" className="sa-output">
-                  <rect
-                    x={OUTPUT.x - 60}
-                    y={OUTPUT.y - 40}
-                    width={120}
-                    height={80}
-                    rx={14}
-                    fill="#0A1828"
-                    stroke="#F0A500"
-                    strokeWidth={2}
-                  />
-                  <text
-                    x={OUTPUT.x}
-                    y={OUTPUT.y + 6}
-                    textAnchor="middle"
-                    fill="#F0A500"
-                    fontSize={14}
-                    fontFamily="Sora, sans-serif"
-                    fontWeight={700}
-                    letterSpacing={2}
-                  >
-                    CUSTOMERS
-                  </text>
-                  <foreignObject x={OUTPUT.x - 12} y={OUTPUT.y - 28} width={24} height={24}>
-                    <div className="w-6 h-6 rounded-md bg-gold/15 flex items-center justify-center">
-                      <Users className="w-4 h-4 text-gold" />
-                    </div>
-                  </foreignObject>
-                </g>
+                {STAGES.map((s) => {
+                  const color = s.gold ? "#F0A500" : "#00C6A7";
+                  return (
+                    <g key={s.id} id={`node-${s.id}`} className="sa-node">
+                      <rect
+                        x={s.x - 60}
+                        y={s.y - 46}
+                        width={120}
+                        height={92}
+                        rx={14}
+                        fill="#0A1828"
+                        stroke={color}
+                        strokeWidth={1.5}
+                        strokeOpacity={0.6}
+                      />
+                      <foreignObject x={s.x - 16} y={s.y - 34} width={32} height={32}>
+                        <div
+                          className={`w-8 h-8 rounded-md flex items-center justify-center ${
+                            s.gold ? "bg-gold/15" : "bg-teal/15"
+                          }`}
+                        >
+                          <s.Icon className={`w-4 h-4 ${s.gold ? "text-gold" : "text-teal"}`} />
+                        </div>
+                      </foreignObject>
+                      <text
+                        x={s.x}
+                        y={s.y + 22}
+                        textAnchor="middle"
+                        fill="#F8FAFC"
+                        fontSize={13}
+                        fontFamily="Sora, sans-serif"
+                        fontWeight={700}
+                      >
+                        {s.name}
+                      </text>
+                      <text
+                        x={s.x}
+                        y={s.y - 54}
+                        textAnchor="middle"
+                        fill={color}
+                        fontSize={9}
+                        fontFamily="Space Grotesk, sans-serif"
+                        letterSpacing={2}
+                      >
+                        {s.num}
+                      </text>
+                    </g>
+                  );
+                })}
               </svg>
             </div>
 
-            {/* Sidebar */}
+            {/* Sidebar descriptions */}
             <div className="hidden md:block space-y-3">
-              {MODS.map((m) => (
-                <div key={m.id} className={`sa-sidebar-item sidebar-${m.id} border-l-2 border-teal/40 pl-4`}>
-                  <div className="text-[10px] uppercase tracking-[0.25em] text-teal font-ui font-semibold">
-                    {m.num} — {m.name}
+              {STAGES.map((s) => (
+                <div
+                  key={s.id}
+                  className={`sa-sidebar-item sidebar-${s.id} border-l-2 pl-4 ${
+                    s.gold ? "border-gold/60" : "border-teal/40"
+                  }`}
+                >
+                  <div
+                    className={`text-[10px] uppercase tracking-[0.25em] font-ui font-semibold ${
+                      s.gold ? "text-gold" : "text-teal"
+                    }`}
+                  >
+                    {s.num} — {s.name}
                   </div>
-                  <p className="text-xs text-cool-gray font-brand leading-relaxed mt-1">{m.desc}</p>
+                  <p className="text-xs text-cool-gray font-brand leading-relaxed mt-1">{s.desc}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Final */}
           <div className="text-center mt-2">
-            <p className="sa-final-headline text-cool-gray font-brand mb-4">
-              This is what we build for your business.
+            <p className="sa-final text-creator-white font-display text-base md:text-lg mb-4 max-w-3xl mx-auto">
+              While other agencies post content,{" "}
+              <span className="text-gold">MHS-Productions operates your entire monthly content engine.</span>{" "}
+              That's the difference.
             </p>
             <a
               href={WA_DEFAULT}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackCtaClick("system_assembly_cta")}
-              className="sa-final-cta btn-primary-glow"
+              className="sa-final btn-primary-glow"
             >
-              Get Free Growth Audit
+              Get Free Audit
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -317,43 +315,60 @@ function MobileStack() {
   }, []);
 
   return (
-    <section id="growth-system" className="section-padding relative">
+    <section id="system" className="section-padding relative bg-[#030712]">
       <div className="mx-auto max-w-md">
         <div className="text-center mb-10">
-          <div className="label-eyebrow mb-3">The MHS Growth System</div>
+          <div className="label-eyebrow mb-3">The System</div>
           <h2 className="text-3xl font-display font-bold text-creator-white">
-            Attention → <span className="text-gradient-teal-gold">Customers</span>
+            The Content Growth <span className="text-gradient-teal-gold">Engine™</span>
           </h2>
+          <p className="mt-3 text-cool-gray font-brand text-sm">
+            A five-stage monthly content operations system.
+          </p>
         </div>
 
         <div ref={stackRef} className="flex flex-col items-center">
-          {MODS.map((m, i) => (
-            <div key={m.id} className="w-full flex flex-col items-center">
-              <div className="m-item card-mhs p-5 w-full opacity-0 translate-y-4 transition-all duration-500">
+          {STAGES.map((s, i) => (
+            <div key={s.id} className="w-full flex flex-col items-center">
+              <div
+                className={`m-item card-mhs p-5 w-full opacity-0 translate-y-4 transition-all duration-500 ${
+                  s.gold ? "border-gold/40" : ""
+                }`}
+              >
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-lg bg-teal/15 border border-teal/30 flex items-center justify-center">
-                    <m.Icon className="w-5 h-5 text-teal" />
+                  <div
+                    className={`w-10 h-10 rounded-lg border flex items-center justify-center ${
+                      s.gold
+                        ? "bg-gold/15 border-gold/30"
+                        : "bg-teal/15 border-teal/30"
+                    }`}
+                  >
+                    <s.Icon className={`w-5 h-5 ${s.gold ? "text-gold" : "text-teal"}`} />
                   </div>
-                  <div className="text-[10px] text-teal uppercase tracking-[0.2em] font-ui">{m.num}</div>
+                  <div
+                    className={`text-[10px] uppercase tracking-[0.2em] font-ui ${
+                      s.gold ? "text-gold" : "text-teal"
+                    }`}
+                  >
+                    {s.num} — {s.name}
+                  </div>
                 </div>
-                <h3 className="text-base font-display font-semibold text-creator-white">{m.name}</h3>
-                <p className="text-xs text-cool-gray font-brand mt-1">{m.desc}</p>
+                <p className="text-xs text-cool-gray font-brand mt-1 leading-relaxed">{s.desc}</p>
               </div>
-              {i < MODS.length - 1 && (
+              {i < STAGES.length - 1 && (
                 <div className="relative w-px h-10 bg-teal/50 my-1">
                   <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-gold" />
                 </div>
               )}
             </div>
           ))}
-
-          <div className="relative w-px h-10 bg-teal/50 my-1" />
-          <div className="m-item px-6 py-4 rounded-xl border-2 border-gold bg-gold/5 opacity-0 translate-y-4 transition-all duration-500">
-            <div className="text-2xl font-display font-bold text-gold tracking-widest">CUSTOMERS</div>
-          </div>
         </div>
 
         <div className="mt-10 text-center">
+          <p className="text-creator-white font-display text-sm mb-4">
+            While other agencies post content, MHS-Productions operates your entire monthly content
+            engine.
+          </p>
           <a
             href={WA_DEFAULT}
             target="_blank"
@@ -361,7 +376,7 @@ function MobileStack() {
             onClick={() => trackCtaClick("system_assembly_cta_mobile")}
             className="btn-primary-glow"
           >
-            Get Free Growth Audit
+            Get Free Audit
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>

@@ -1,13 +1,38 @@
 import { useEffect, useRef } from "react";
-import { Search, Map, Hammer, Rocket, TrendingUp } from "lucide-react";
+import { ClipboardCheck, MessageSquare, Wrench, Camera, Send } from "lucide-react";
 import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 
 const steps = [
-  { week: "Week 1", icon: Search, name: "Diagnose", desc: "We audit your full marketing presence and identify where leads are leaking." },
-  { week: "Week 2", icon: Map, name: "Plan", desc: "We design your customer journey from ad → landing page → WhatsApp → booking." },
-  { week: "Week 3", icon: Hammer, name: "Build", desc: "We create content, ad creatives, landing page, and WhatsApp flow." },
-  { week: "Week 4", icon: Rocket, name: "Launch", desc: "We connect all pieces and activate the customer acquisition system." },
-  { week: "Ongoing", icon: TrendingUp, name: "Optimize", desc: "We review performance weekly and improve what's not converting." },
+  {
+    when: "Day 1",
+    icon: ClipboardCheck,
+    name: "Free Audit",
+    desc: "Send us your Instagram profile. We record a 10-minute personalised video audit covering what's missing, what to fix, and exactly what to create next month. Free. No commitment.",
+  },
+  {
+    when: "Days 2–3",
+    icon: MessageSquare,
+    name: "Strategy Session",
+    desc: "One call or WhatsApp conversation where we align on content pillars, niche direction, what performs well in your industry, and the content calendar for Month 1.",
+  },
+  {
+    when: "Days 4–6",
+    icon: Wrench,
+    name: "Build & Prepare",
+    desc: "We prepare your content calendar, shoot brief, and creative direction so the shoot day runs smoothly. You receive the plan for review and approval before anything is produced.",
+  },
+  {
+    when: "Week 2",
+    icon: Camera,
+    name: "Shoot Day",
+    desc: "We arrive at your location with a clear brief. You direct your normal business activity. We capture Reels, B-roll, testimonials, and branded content — typically in 2–4 hours.",
+  },
+  {
+    when: "Week 3–4",
+    icon: Send,
+    name: "Edit, Approve & Publish",
+    desc: "Content is edited, captioned, and delivered to you via WhatsApp for approval. Once approved, everything is scheduled and published according to the optimal posting calendar.",
+  },
 ];
 
 export function ProcessTimeline() {
@@ -35,7 +60,6 @@ export function ProcessTimeline() {
         scrollTrigger: { trigger: rootRef.current, start: "top 70%" },
       });
 
-      // Count up
       document.querySelectorAll<HTMLElement>(".pt-num").forEach((el) => {
         const target = Number(el.dataset.n || 0);
         const obj = { v: 0 };
@@ -57,10 +81,14 @@ export function ProcessTimeline() {
     <section id="process" ref={rootRef} className="section-padding section-bg relative bg-[#030712]">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl mb-14">
-          <div className="label-eyebrow mb-4">How We Work</div>
+          <div className="label-eyebrow mb-4">How It Works</div>
           <h2 className="text-3xl md:text-5xl font-display font-bold leading-[1.1] text-creator-white">
-            From audit to active system in <span className="text-gradient-teal-gold">4 weeks.</span>
+            From first message to first post in{" "}
+            <span className="text-gradient-teal-gold">one week.</span>
           </h2>
+          <p className="mt-5 text-cool-gray text-base md:text-lg font-brand leading-relaxed">
+            A clean, fast onboarding process with no confusion about what happens next.
+          </p>
         </div>
 
         <div className="relative">
@@ -77,7 +105,7 @@ export function ProcessTimeline() {
                     <span className="pt-num" data-n={i + 1}>0</span>
                   </div>
                 </div>
-                <div className="text-[10px] uppercase tracking-[0.25em] text-gold font-ui mb-1">{s.week}</div>
+                <div className="text-[10px] uppercase tracking-[0.25em] text-gold font-ui mb-1">{s.when}</div>
                 <h3 className="text-xl font-display font-semibold text-creator-white mb-2">{s.name}</h3>
                 <p className="text-sm text-cool-gray leading-relaxed font-brand">{s.desc}</p>
               </div>
