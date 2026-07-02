@@ -1,26 +1,36 @@
-import { Zap, TrendingDown, Unlock, MessageSquareOff, ArrowDown } from "lucide-react";
+import { CalendarX, Sparkles, Flame, TrendingDown, UserX, Clock } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const problems = [
   {
-    icon: Zap,
-    title: "Random posting",
-    desc: "Your content gets views but doesn't create inquiries because there's no CTA, no funnel, and no path to WhatsApp.",
+    icon: CalendarX,
+    title: "You post randomly — or not at all",
+    desc: "No content calendar. No strategy. Posts go up when someone remembers. Months pass without a single Reel.",
+  },
+  {
+    icon: Sparkles,
+    title: "Your Instagram doesn't reflect your actual quality",
+    desc: "Your work is excellent. Your Instagram looks like no one is managing it. That gap costs you bookings every day.",
+  },
+  {
+    icon: Flame,
+    title: "You've tried posting yourself — it didn't stick",
+    desc: "You filmed a few Reels, wrote some captions, burned out after three weeks. Consistency requires a system, not willpower.",
   },
   {
     icon: TrendingDown,
-    title: "Ads without a destination",
-    desc: "Meta ads drive traffic to a business page with no clear offer. Budget spent. Zero bookings.",
+    title: "You're losing customers to competitors who post",
+    desc: "In Lahore, the aesthetic clinic that posts 3 Reels a week books more appointments than the better one that posts twice a month. Visibility wins.",
   },
   {
-    icon: Unlock,
-    title: "Weak landing pages",
-    desc: "Visitors don't know what to do. No clear offer, no trust proof, no urgent CTA.",
+    icon: UserX,
+    title: "You hired a freelancer and got inconsistent delivery",
+    desc: "They post for a month, go quiet, don't shoot, don't report. You don't know what you're getting month to month.",
   },
   {
-    icon: MessageSquareOff,
-    title: "Slow WhatsApp replies",
-    desc: "Leads message and never get a structured response. They move on in 15 minutes.",
+    icon: Clock,
+    title: "You don't have time for shoot days",
+    desc: "Every time you think about content, it means coordinating a shoot, finding time, and then editing. It never happens.",
   },
 ];
 
@@ -28,51 +38,48 @@ export function ProblemSection() {
   return (
     <section className="section-padding section-bg relative overflow-hidden bg-[#030712]">
       <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
-        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ top: "10%", left: "-2%", fontSize: "14vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>LEAKING</span>
-        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ bottom: "8%", right: "-2%", fontSize: "12vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>VIEWS</span>
+        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ top: "10%", left: "-2%", fontSize: "14vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>INVISIBLE</span>
+        <span className="absolute font-display font-black text-creator-white whitespace-nowrap leading-none" style={{ bottom: "8%", right: "-2%", fontSize: "12vw", opacity: 0.03, filter: "blur(3px)", letterSpacing: "-0.04em" }}>SILENT</span>
       </div>
       <div className="absolute inset-0 -z-10 grid-bg opacity-20" />
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <div className="max-w-3xl">
-            <div className="label-eyebrow mb-4">The Real Problem</div>
+            <div className="label-eyebrow mb-4">The Problem</div>
             <h2 className="text-3xl md:text-5xl font-display font-bold leading-[1.1] text-creator-white">
-              Most businesses don't have a content problem.{" "}
-              <span className="text-gradient-teal-gold">They have a disconnected system problem.</span>
+              Your business is invisible online.{" "}
+              <span className="text-gradient-teal-gold">And you know it.</span>
             </h2>
             <p className="mt-6 text-cool-gray text-lg leading-relaxed font-brand">
-              You post. You boost. You reply on WhatsApp. But nothing is connected. Attention enters and leaks before
-              it ever becomes a customer.
+              It's not that you don't care about social media. It's that running your business doesn't
+              leave time to plan, shoot, edit, and post content consistently. That's what we fix.
             </p>
           </div>
         </Reveal>
 
-        <div className="mt-14 grid sm:grid-cols-2 gap-5">
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {problems.map((p, i) => (
-            <Reveal key={i} delay={i * 0.08}>
-              <div className="card-mhs p-6 h-full border-l-2 border-l-teal/60 group">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
-                    <p.icon className="w-5 h-5 text-gold" />
-                  </div>
+            <Reveal key={i} delay={i * 0.06}>
+              <div className="card-mhs p-6 h-full border-l-2 border-l-gold/60 group">
+                <div className="w-11 h-11 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center mb-4">
+                  <p.icon className="w-5 h-5 text-gold" />
                 </div>
-                <h3 className="text-xl font-display font-semibold text-creator-white mb-2">{p.title}</h3>
-                <p className="text-sm md:text-base text-cool-gray leading-relaxed font-brand">{p.desc}</p>
+                <h3 className="text-lg font-display font-semibold text-creator-white mb-2">{p.title}</h3>
+                <p className="text-sm text-cool-gray leading-relaxed font-brand">{p.desc}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center">
-          <div className="h-12 w-px bg-gradient-to-b from-transparent to-teal" />
-          <a
-            href="#growth-system"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal/30 bg-teal/5 text-teal text-sm font-ui font-semibold hover:bg-teal/10 transition-colors"
-          >
-            The fix
-            <ArrowDown className="w-4 h-4" />
-          </a>
-        </div>
+        <Reveal>
+          <div className="mt-12 max-w-3xl mx-auto text-center">
+            <p className="text-lg md:text-xl font-display text-creator-white leading-relaxed">
+              The answer isn't trying harder. It's having a{" "}
+              <span className="text-teal">complete content team</span> — one that shows up every month
+              with a plan, a camera, and a publishing schedule.
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

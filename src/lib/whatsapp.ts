@@ -1,11 +1,11 @@
-export const WA_NUMBER = "923XXXXXXXXX";
+export const WA_NUMBER = "923001234567";
 
 export function whatsappUrl(message: string) {
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
 export const WA_DEFAULT = whatsappUrl(
-  "Hi MHS-Productions, I'd like to request my free growth audit.",
+  "Hi MHS-Productions, I'd like to request my free Instagram audit.",
 );
 
 export function trackCtaClick(label: string) {

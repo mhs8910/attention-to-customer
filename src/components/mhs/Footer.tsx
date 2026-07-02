@@ -5,11 +5,17 @@ import { WA_DEFAULT, trackCtaClick } from "@/lib/whatsapp";
 const columns = [
   {
     title: "Services",
-    links: ["Meta Ads", "Content", "Landing Pages", "WhatsApp Funnels", "Growth Audits", "GBP Optimization"],
+    links: [
+      "Instagram Reels Production",
+      "Content Strategy",
+      "Graphic Posts & Carousels",
+      "Scheduling & Publishing",
+      "Monthly Reports",
+    ],
   },
   {
     title: "Company",
-    links: ["About", "Work", "Process", "Blog", "Contact"],
+    links: ["About", "Our Work", "Process", "Contact"],
   },
 ];
 
@@ -21,8 +27,13 @@ export function Footer() {
           <div className="grid md:grid-cols-[1.4fr_1fr_1fr_1.2fr] gap-10">
             <div>
               <Logo size={44} />
-              <p className="mt-5 text-cool-gray font-brand max-w-xs">Turn Attention Into Customers.</p>
-              <p className="mt-2 text-xs text-cool-gray/70 font-ui">Lahore, Pakistan</p>
+              <p className="mt-5 text-teal font-ui text-sm tracking-[0.2em] uppercase">
+                Plan. Shoot. Edit. Post. Grow.
+              </p>
+              <p className="mt-4 text-cool-gray font-brand max-w-xs text-sm leading-relaxed">
+                Lahore's content production agency for local service businesses. We handle your
+                complete monthly social media content engine.
+              </p>
             </div>
 
             {columns.map((c) => (
@@ -47,8 +58,13 @@ export function Footer() {
 
             <div>
               <div className="text-xs uppercase tracking-[0.2em] text-teal font-ui font-semibold mb-4">
-                Start Now
+                Contact
               </div>
+              <ul className="space-y-2.5 mb-5 text-sm text-cool-gray font-brand">
+                <li>WhatsApp: +92 300 123 4567</li>
+                <li>Instagram: @mhsproductions</li>
+                <li>Location: Lahore, Pakistan</li>
+              </ul>
               <a
                 href={WA_DEFAULT}
                 target="_blank"
@@ -56,7 +72,7 @@ export function Footer() {
                 onClick={() => trackCtaClick("footer_audit")}
                 className="btn-primary-glow w-full justify-center"
               >
-                Get your free growth audit
+                Free Audit
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -64,9 +80,9 @@ export function Footer() {
 
           <div className="mt-12 pt-6 border-t border-teal/10 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <p className="text-xs text-cool-gray/70 font-ui">
-              © 2026 MHS-Productions. All rights reserved.
+              © 2025 MHS-Productions. Built in Lahore.
             </p>
-            <p className="text-xs text-cool-gray/70 font-ui">We turn attention into customers.</p>
+            <p className="text-xs text-cool-gray/70 font-ui">Plan. Shoot. Edit. Post. Grow.</p>
           </div>
         </div>
       </footer>
