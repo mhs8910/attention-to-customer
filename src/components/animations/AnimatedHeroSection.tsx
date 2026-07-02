@@ -3,26 +3,26 @@ import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } f
 import {
   ArrowRight,
   ArrowDown,
-  Globe,
+  Film,
+  Calendar,
   Instagram,
-  MapPin,
   MessageCircle,
-  Megaphone,
-  Users,
-  Sparkles,
+  Camera,
+  Send,
+  TrendingUp,
 } from "lucide-react";
 import { WA_DEFAULT, trackCtaClick } from "@/lib/whatsapp";
 
 const GHOST_WORDS = [
-  { text: "GROWTH", top: "5%", left: "-2%", size: "11vw" },
-  { text: "SYSTEM", top: "70%", left: "62%", size: "13vw" },
-  { text: "LEADS", top: "25%", left: "72%", size: "9vw" },
-  { text: "TRUST", top: "55%", left: "-1%", size: "10vw" },
-  { text: "FUNNELS", top: "80%", left: "20%", size: "10vw" },
+  { text: "PLAN", top: "5%", left: "-2%", size: "11vw" },
+  { text: "SHOOT", top: "70%", left: "62%", size: "13vw" },
+  { text: "EDIT", top: "25%", left: "72%", size: "9vw" },
+  { text: "POST", top: "55%", left: "-1%", size: "10vw" },
+  { text: "GROW", top: "80%", left: "20%", size: "10vw" },
 ];
 
 type DashCard = {
-  icon: typeof Globe;
+  icon: typeof Film;
   label: string;
   status: string;
   body: React.ReactNode;
@@ -31,9 +31,9 @@ type DashCard = {
 
 const DASH_CARDS: DashCard[] = [
   {
-    icon: Globe,
-    label: "Website",
-    status: "Trust Layer",
+    icon: Film,
+    label: "Reels",
+    status: "Edited & Scheduled",
     body: (
       <div className="flex items-end gap-1 h-8">
         {[40, 60, 55, 75, 70, 90, 85].map((h, i) => (
@@ -47,12 +47,29 @@ const DASH_CARDS: DashCard[] = [
     ),
   },
   {
+    icon: Calendar,
+    label: "Strategy",
+    status: "Content Calendar",
+    body: (
+      <div className="grid grid-cols-7 gap-1">
+        {Array.from({ length: 14 }).map((_, i) => (
+          <div
+            key={i}
+            className={`h-3 rounded-sm ${
+              [1, 3, 6, 8, 10, 12].includes(i) ? "bg-teal/80" : "bg-white/8"
+            }`}
+          />
+        ))}
+      </div>
+    ),
+  },
+  {
     icon: Instagram,
-    label: "Social Media",
-    status: "Attention Layer",
+    label: "Instagram",
+    status: "Profile Optimized",
     body: (
       <div className="space-y-1.5">
-        {[80, 55, 70].map((w, i) => (
+        {[85, 65, 78].map((w, i) => (
           <div key={i} className="h-1.5 rounded-full bg-white/5 overflow-hidden">
             <div className="h-full bg-teal/70" style={{ width: `${w}%` }} />
           </div>
@@ -61,24 +78,9 @@ const DASH_CARDS: DashCard[] = [
     ),
   },
   {
-    icon: MapPin,
-    label: "Google Profile",
-    status: "Local Discovery",
-    body: (
-      <div className="flex items-center gap-1 text-gold">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <svg key={i} viewBox="0 0 20 20" className="w-3.5 h-3.5 fill-current">
-            <path d="M10 1l2.6 5.9 6.4.6-4.8 4.4 1.4 6.4L10 15l-5.6 3.3 1.4-6.4L1 7.5l6.4-.6L10 1z" />
-          </svg>
-        ))}
-        <span className="ml-1 text-[10px] font-ui text-cool-gray">4.9</span>
-      </div>
-    ),
-  },
-  {
     icon: MessageCircle,
-    label: "WhatsApp Funnel",
-    status: "Inquiry Flow",
+    label: "WhatsApp",
+    status: "Audit Delivered",
     body: (
       <div className="space-y-1">
         <div className="w-3/4 h-2 rounded-full rounded-bl-none bg-teal/20" />
@@ -88,39 +90,36 @@ const DASH_CARDS: DashCard[] = [
     ),
   },
   {
-    icon: Megaphone,
-    label: "Meta Ads",
-    status: "Traffic Engine",
+    icon: Camera,
+    label: "Shoots",
+    status: "2 Days/Month",
     body: (
-      <div className="flex items-end gap-1 h-8">
-        {[30, 50, 45, 70, 90, 75].map((h, i) => (
-          <div
-            key={i}
-            className="flex-1 rounded-sm bg-gradient-to-t from-teal/40 to-teal"
-            style={{ height: `${h}%` }}
-          />
-        ))}
+      <div className="flex items-center gap-2">
+        <div className="font-display text-2xl font-bold text-creator-white">2</div>
+        <div className="text-[10px] font-ui text-cool-gray leading-tight">
+          shoot<br/>days
+        </div>
       </div>
     ),
   },
   {
-    icon: Users,
-    label: "Leads",
-    status: "Qualified",
+    icon: Send,
+    label: "Posts Live",
+    status: "Consistent",
     body: (
       <div className="font-display text-2xl font-bold text-creator-white">
-        24<span className="text-cool-gray text-sm font-ui ml-1">/wk</span>
+        12<span className="text-cool-gray text-sm font-ui ml-1">/mo</span>
       </div>
     ),
   },
   {
-    icon: Sparkles,
-    label: "Customers",
-    status: "Conversion",
+    icon: TrendingUp,
+    label: "Growth",
+    status: "Compounding",
     highlight: true,
     body: (
       <div className="font-display text-2xl font-bold text-gold drop-shadow-[0_0_18px_rgba(240,165,0,0.55)]">
-        +18%
+        +57%
       </div>
     ),
   },
@@ -165,13 +164,11 @@ export function AnimatedHeroSection() {
     offset: ["start start", "end end"],
   });
 
-  // Hero copy: sharp on load, fades between 35–50%
   const heroOpacity = useTransform(scrollYProgress, [0, 0.02, 0.35, 0.50], [1, 1, 1, 0]);
   const heroY = useTransform(scrollYProgress, [0, 0.05], [8, 0]);
   const heroBlur = useTransform(scrollYProgress, [0, 0.05], [2, 0]);
   const heroFilter = useTransform(heroBlur, (v) => `blur(${v}px)`);
 
-  // Dashboard: appears only AFTER hero is gone
   const dashboardY = useTransform(scrollYProgress, [0.52, 0.72], [140, 0]);
   const dashboardScale = useTransform(scrollYProgress, [0.52, 0.72], [0.90, 1]);
   const dashboardOpacity = useTransform(
@@ -182,26 +179,22 @@ export function AnimatedHeroSection() {
   const dashboardBlur = useTransform(scrollYProgress, [0.52, 0.72], [16, 0]);
   const dashboardFilter = useTransform(dashboardBlur, (v) => `blur(${v}px)`);
 
-  // Ghost typography parallax — much lower opacity
   const bgTextY = useTransform(scrollYProgress, [0, 1], [80, -300]);
   const bgTextOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1.0], [0.035, 0.06, 0.04, 0.02]);
 
-  // Glow — gentle
   const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.0, 1.08, 0.95]);
   const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.18, 0.40, 0.15]);
 
-  // Lines follow dashboard
   const linePathLength = useTransform(scrollYProgress, [0.60, 0.82], [0, 1]);
 
   return (
     <section
       ref={sectionRef}
       id="top"
-      className="relative bg-[#030712] h-[500vh] md:h-[600vh]"
+      className="relative bg-[#030712] h-[400vh] md:h-[550vh]"
       style={reduced ? { height: "auto" } : undefined}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Layer 1: gradients */}
         <div
           className="absolute inset-0"
           style={{
@@ -210,17 +203,14 @@ export function AnimatedHeroSection() {
           }}
         />
 
-        {/* Layer 2: blueprint grid */}
         <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
 
-        {/* Layer 3: ghost typography parallax */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
           {GHOST_WORDS.map((w) => (
             <GhostWord key={w.text} word={w} bgTextY={bgTextY} bgTextOpacity={bgTextOpacity} />
           ))}
         </div>
 
-        {/* Layer 4: conversion arc glow */}
         <motion.div
           aria-hidden
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[60vh] pointer-events-none"
@@ -233,7 +223,6 @@ export function AnimatedHeroSection() {
           }}
         />
 
-        {/* Layer 5: floating particles */}
         {!reduced && (
           <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
             {Array.from({ length: 14 }).map((_, i) => (
@@ -256,34 +245,37 @@ export function AnimatedHeroSection() {
           style={{ opacity: heroOpacity, y: heroY, filter: heroFilter }}
         >
           <div className="max-w-5xl text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal/25 bg-teal/5 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
-              <span className="text-[10px] md:text-xs font-ui uppercase tracking-[0.22em] text-teal">
-                Lahore's Growth System for Local Businesses
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/30 bg-gold/5 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+              <span className="text-[10px] md:text-xs font-ui uppercase tracking-[0.22em] text-gold">
+                Lahore's Content Growth Agency
               </span>
             </div>
 
-            <h1 className="font-display font-bold text-[2.4rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-[5rem] tracking-tight text-creator-white">
-              Your Business Gets{" "}
+            <h1 className="font-display font-bold text-[2.4rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-[4.75rem] tracking-tight text-creator-white">
+              Your Business Is
+              <br />
               <span
                 className="text-teal"
                 style={{ textShadow: "0 0 40px rgba(0,198,167,0.4)" }}
               >
-                Views.
+                Doing Great Work.
               </span>
               <br />
-              We Turn Them Into{" "}
+              We Make Sure
+              <br />
               <span
                 className="text-gold"
                 style={{ textShadow: "0 0 50px rgba(240,165,0,0.5)" }}
               >
-                Customers.
+                Instagram Shows It.
               </span>
             </h1>
 
             <p className="mt-7 max-w-2xl mx-auto text-base md:text-lg text-cool-gray leading-relaxed font-brand">
-              MHS-Productions builds the complete customer acquisition system — websites, content, ads,
-              Google, and WhatsApp — so every rupee of attention you earn converts into an inquiry.
+              MHS-Productions handles your complete content engine — strategy, shoot days, professional
+              editing, and consistent posting — so you can focus on running your business while we keep
+              you visible online every month.
             </p>
 
             <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -294,17 +286,18 @@ export function AnimatedHeroSection() {
                 onClick={() => trackCtaClick("hero_primary")}
                 className="btn-primary-glow"
               >
-                Free Audit
+                Get Free Audit
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="#growth-system" className="btn-secondary-outline">
-                See The System
+              <a href="/#system" className="btn-secondary-outline">
+                See How It Works
                 <ArrowDown className="w-4 h-4" />
               </a>
             </div>
 
             <p className="mt-10 text-xs md:text-sm text-cool-gray/80 font-ui">
-              Trusted by aesthetic clinics, solar companies, realtors &amp; restaurants in Lahore and across Pakistan.
+              Serving aesthetic clinics, solar companies, salons, restaurants &amp; gyms across Lahore
+              and Pakistan.
             </p>
           </div>
         </motion.div>
@@ -320,7 +313,6 @@ export function AnimatedHeroSection() {
           }}
         >
           <div className="relative w-full max-w-6xl">
-            {/* SVG connection lines */}
             <svg
               className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
               viewBox="0 0 1000 520"
