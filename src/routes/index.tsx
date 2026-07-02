@@ -5,20 +5,19 @@ import { AnimatedHeroSection } from "@/components/animations/AnimatedHeroSection
 import { ProblemSection } from "@/components/mhs/ProblemSection";
 import { TransitionSection } from "@/components/animations/TransitionSection";
 import { SystemAssembly } from "@/components/animations/SystemAssembly";
-import { WhoWeWorkWith } from "@/components/mhs/WhoWeWorkWith";
-import { OfferSection } from "@/components/mhs/OfferSection";
 import { Services } from "@/components/mhs/Services";
+import { WhoWeWorkWith } from "@/components/mhs/WhoWeWorkWith";
+import { GrowthTest } from "@/components/mhs/GrowthTest";
 import { CaseStudies } from "@/components/mhs/CaseStudies";
 import { ProcessTimeline } from "@/components/animations/ProcessTimeline";
-import { GrowthTest } from "@/components/mhs/GrowthTest";
 import { FAQ, FAQ_ITEMS } from "@/components/mhs/FAQ";
 import { FinalCTAAnimated } from "@/components/animations/FinalCTAAnimated";
 import { Footer } from "@/components/mhs/Footer";
 
 const SITE = "https://attention-to-customer.lovable.app";
-const TITLE = "MHS-Productions | Turn Attention Into Customers";
+const TITLE = "MHS-Productions | Your Complete Content Team in Lahore";
 const DESCRIPTION =
-  "MHS-Productions builds the system that connects Meta ads, social content, landing pages, and WhatsApp into one customer acquisition engine for local businesses in Lahore and across Pakistan.";
+  "MHS-Productions runs your complete monthly social media content engine — strategy, shoot days, editing, and posting — for aesthetic clinics, solar companies, salons, restaurants and gyms in Lahore and across Pakistan.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,7 +27,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "Meta ads agency Lahore, content production Pakistan, WhatsApp funnel agency, landing page agency, growth audit, customer acquisition agency, MHS-Productions",
+          "content production agency Lahore, Instagram Reels production Pakistan, social media agency Lahore, aesthetic clinic marketing, solar company content, salon Instagram, restaurant social media, MHS-Productions",
       },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
@@ -52,12 +51,12 @@ export const Route = createFileRoute("/")({
           areaServed: ["Lahore", "Pakistan"],
           address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
           serviceType: [
-            "Meta Ads",
-            "Social Media Content Production",
-            "Landing Page Design",
-            "WhatsApp Funnels",
-            "Growth Audits",
-            "Google Business Profile Optimization",
+            "Instagram Reels Production",
+            "Content Strategy",
+            "Graphic Design",
+            "Social Media Management",
+            "Content Scheduling",
+            "Monthly Performance Reporting",
           ],
         }),
       },
@@ -88,12 +87,11 @@ function Index() {
         <ProblemSection />
         <TransitionSection />
         <SystemAssembly />
-        <WhoWeWorkWith />
-        <OfferSection />
         <Services />
+        <WhoWeWorkWith />
+        <GrowthTest />
         <CaseStudies />
         <ProcessTimeline />
-        <GrowthTest />
         <FAQ />
         <FinalCTAAnimated />
       </main>
